@@ -21,9 +21,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async loadCards ({ commit }) {
+    async loadCards ({ commit }, name) {
+      const url = ['https://api.pokemontcg.io/v1/cards', name]
+        .filter(f => f)
+        .join('?name=')
+
       try {
-        const response = await fetch('https://api.pokemontcg.io/v1/cards')
+        const response = await fetch(url)
         const data = await response.json()
 
         commit('SET_CARDS', data.cards)

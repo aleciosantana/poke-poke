@@ -1,5 +1,9 @@
 <template>
   <div class="card-list container">
+    <div class="search__container">
+      <p-search></p-search>
+    </div>
+
     <div class="list__container">
       <router-link v-for="card in cards" :key="card.id" :to="`/cards/${card.id}`">
         <p-card :info="card"></p-card>
@@ -11,9 +15,10 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import PCard from '@/components/PCard'
+import PSearch from '@/components/PSearch'
 
 export default {
-  components: { PCard },
+  components: { PCard, PSearch },
   computed: {
     ...mapGetters(['cards'])
   },
@@ -35,6 +40,11 @@ export default {
     overflow-x: auto;
     height: 100%;
   }
+}
+
+.search__container{
+  padding: 0 10px;
+  margin: 10px 0;
 }
 
 .p-card {
